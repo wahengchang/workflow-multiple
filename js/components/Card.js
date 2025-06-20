@@ -102,33 +102,34 @@ export default {
             <span>{{ configOpen ? 'Hide' : 'Show' }} Model Config</span>
           </button>
           <div v-if="configOpen" :id="'card-config-'+index" class="card-config-collapse">
-            <div class="card-config-fields">
+            <div class="card-config-fields" style="display: flex; flex-direction: column; gap: 8px;">
               <label class="card-config-label">
                 System Prompt:
-                <input v-model="config.systemPrompt" class="card-config-input" type="text" />
+                <input v-model="config.systemPrompt" class="card-config-input" type="text" style="width: 260px;" />
               </label>
+              <label class="card-config-label">
                 Model:
-                <input v-model="config.model" class="card-config-input" type="text" />
+                <input v-model="config.model" class="card-config-input" type="text" style="width: 260px;" />
               </label>
               <label class="card-config-label">
                 Temperature:
-                <input v-model.number="config.temperature" class="card-config-input" type="number" step="0.01" min="0" max="2" />
+                <input v-model.number="config.temperature" class="card-config-input" type="number" step="0.01" min="0" max="2" style="width: 120px;" />
               </label>
               <label class="card-config-label">
                 Top P:
-                <input v-model.number="config.top_p" class="card-config-input" type="number" step="0.01" min="0" max="1" />
+                <input v-model.number="config.top_p" class="card-config-input" type="number" step="0.01" min="0" max="1" style="width: 120px;" />
               </label>
               <label class="card-config-label">
                 Presence Penalty:
-                <input v-model.number="config.presence_penalty" class="card-config-input" type="number" step="0.01" min="-2" max="2" />
+                <input v-model.number="config.presence_penalty" class="card-config-input" type="number" step="0.01" min="-2" max="2" style="width: 120px;" />
               </label>
               <label class="card-config-label">
                 Frequency Penalty:
-                <input v-model.number="config.frequency_penalty" class="card-config-input" type="number" step="0.01" min="-2" max="2" />
+                <input v-model.number="config.frequency_penalty" class="card-config-input" type="number" step="0.01" min="-2" max="2" style="width: 120px;" />
               </label>
               <label class="card-config-label">
                 Max Tokens:
-                <input v-model.number="config.max_tokens" class="card-config-input" type="number" min="1" max="4096" />
+                <input v-model.number="config.max_tokens" class="card-config-input" type="number" min="1" max="4096" style="width: 120px;" />
               </label>
             </div>
           </div>
