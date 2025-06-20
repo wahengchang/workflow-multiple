@@ -14,13 +14,13 @@ export default {
     return { showSettings, openSettings, closeSettings };
   },
   template: `
-    <header class="header-bar">
+    <header class="header-bar" role="banner">
       <div class="header-gradient">
-        <span class="header-title">Content Rewrite Assistant</span>
-        <div class="header-controls">
-          <button class="header-btn">Home</button>
-          <button class="header-btn" @click="openSettings">Settings</button>
-        </div>
+        <span class="header-title" aria-label="App Title">Content Rewrite Assistant</span>
+        <nav class="header-controls" aria-label="Main Navigation">
+          <button class="header-btn" aria-label="Home">🏠 Home</button>
+          <button class="header-btn" @click="openSettings" aria-label="Settings">⚙️ Settings</button>
+        </nav>
       </div>
       <SettingsModal :show="showSettings" @close="closeSettings" />
     </header>
