@@ -16,7 +16,7 @@ export default {
   template: `
     <header class="header-bar" role="banner">
       <div class="header-gradient">
-        <span class="header-title" aria-label="App Title">Content Rewrite Assistant</span>
+        <h1 class="header-title" aria-label="App Title" aria-level="1">Content Rewrite Assistant</h1>
         <nav class="header-controls" aria-label="Main Navigation">
           <button class="header-btn" @click="openSettings" aria-label="Settings">⚙️ Settings</button>
         </nav>

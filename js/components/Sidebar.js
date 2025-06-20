@@ -4,7 +4,7 @@
 export default {
   name: 'Sidebar',
   template: `
-    <aside class="sidebar">
+    <aside class="sidebar" role="complementary" aria-label="Sidebar">
       <div class="sidebar-undo">
         <span class="undo-glyph">&#8630;</span>
         <span class="sidebar-label">Undo</span>

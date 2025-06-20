@@ -1,0 +1,16 @@
+{
+  "name": "Content Rewrite Assistant",
+  "short_name": "RewriteAI",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#18181b",
+  "theme_color": "#22d3ee",
+  "description": "A modern Vue Todo App to manage your daily tasks efficiently.",
+  "icons": [
+    {
+      "src": "image.png",
+      "sizes": "64x64 32x32 24x24 16x16 512x512",
+      "type": "image/png"
+    }
+  ]
+}

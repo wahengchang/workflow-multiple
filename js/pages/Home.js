@@ -8,7 +8,7 @@ export default Vue.defineComponent({
   template: `
     <div class="app-root">
       <HeaderBar />
-      <div class="main-layout">
+      <div class="main-layout" id="main-content">
         <Sidebar />
         <BoardCanvas />
       </div>
