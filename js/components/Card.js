@@ -14,6 +14,20 @@ export default {
     const result = ref(null);
     const error = ref(null);
 
+    // Utility: Resolve {{outputN}} in prompt with that card's result
+    function resolvePrompt(rawPrompt) {
+      return rawPrompt.replace(/\{\{output(\d+)\}\}/g, (match, idx) => {
+        try {
+          const data = localStorage.getItem(`card-storage-${idx}`);
+          if (data) {
+            const parsed = JSON.parse(data);
+            return parsed.result || '';
+          }
+        } catch {}
+        return '';
+      });
+    }
+
     // Collapsible config section
     const configOpen = ref(false);
     const config = reactive({
@@ -63,7 +77,6 @@ export default {
       error.value = null;
       loading.value = true;
       try {
-        
         const apiKey = localStorage.getItem('openai_api_key') 
       
         if (!apiKey || apiKey === 'YOUR_OPENAI_API_KEY') {
@@ -73,8 +86,11 @@ export default {
         console.log('storageKey:', storageKey)
         console.log('prompt:', prompt)
         localStorage.setItem(storageKey, JSON.stringify({ prompt: prompt.value }));
-      
-        const response = await callOpenAIApi(prompt.value, config);
+
+        // --- Resolve prompt with outputs ---
+        const resolvedPrompt = resolvePrompt(prompt.value);
+
+        const response = await callOpenAIApi(resolvedPrompt, config);
         result.value = response;
         // Save to localStorage
         localStorage.setItem(storageKey, JSON.stringify({ prompt: prompt.value, result: response, config: { ...config } }));
