@@ -1,0 +1,193 @@
+WEBSITE WIREFRAME BRIEF
+
+Project Name: content rewrite assistant tool (ai)
+
+1. Site Overview & Objectives
+Overview:
+“We are building a website for  Kanban-style board interface that will rewrite content one after one, by using openai api 
+
+
+User Goals:
+-produtivity
+-user friendly
+ - Quickly input one version of text, rewrite 2nd version of text, use 2nd version of text to write v3 ... v-n-th 
+
+
+
+3. Sitemap & Navigation
+Primary Navigation Items (top‐level):
+ - home 
+ - setting
+
+
+Secondary Nav (Sidebar):
+ - undo
+ - or other
+
+4. Page-by-Page Requirements
+- only one page
+   -Header
+   -Main content: Cards
+      - Multiple vertical columns (lists), each with:
+                1st card
+                -only one text area for user input prompt
+                -“Start Working” input at bottom (turn to loading when waiting), after appear start again
+                - block of result appear below "button", not editable, a small button the top right conner of the block
+
+                2nd and n-th card
+                - a arrow connect from the (n-1)th card result block to the  text area for user input prompt
+                -only one text area for user input prompt
+                -“Start Working” like stated previous
+                -block of result like stated previous
+
+5. Functional & Interactive Elements
+Element	Interaction	Notes / States
+“Add a card” input	Click: expand into text-area + “Add card” CTA	Collapsed / Expanded / Error (empty)
+
+Modal window	Click card → open; click X or outside → close	Open / Closed
+
+7. Visual References & Inspiration
+Reference (URL or Screenshot)	What to Emulate	What to Avoid
+https://trello.com/	Clear list/card layout	Overly dense information
+https://dribbble.com/shots/XXXXX-Trello-Clone	Intuitive drag-and-drop cues	Too many colors or labels
+https://uxarchive.com/trello	Simple modal overlays	Interruptive pop-ups
+
+
+ChatGPT said:
+
+Thought for 4 seconds
+Content Rewrite Wireframe
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+import React from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+
+export default function ContentRewriteWireframe() {
+  return (
+    <div className="h-screen flex flex-col">
+      {/* Header */}
+      <header className="flex items-center justify-between bg-white shadow p-4">
+        <h1 className="text-xl font-semibold">Content Rewrite AI</h1>
+        <nav className="space-x-4">
+          <a href="#" className="text-gray-600 hover:text-gray-900">Home</a>
+          <a href="#" className="text-gray-600 hover:text-gray-900">Settings</a>
+        </nav>
+      </header>
+
+      {/* Main body: sidebar + content */}
+      <div className="flex flex-1 overflow-hidden">
+        {/* Sidebar */}
+        <aside className="w-60 bg-gray-50 border-r p-4 flex flex-col">
+          <button className="mb-4 text-gray-700 hover:text-gray-900">Undo</button>
+          <div>
+            <input
+              type="text"
+              placeholder="Add a card"
+              className="w-full border p-2 rounded mb-2"
+            />
+            <Button className="w-full">Add Card</Button>
+          </div>
+        </aside>
+
+        {/* Kanban board area */}
+        <main className="flex-1 overflow-x-auto p-4">
+          <div className="flex space-x-4">
+            {/* Sample Column */}
+            {[1, 2, 3].map((col) => (
+I’ve sketched out a single‐page React/Tailwind wireframe for the Content Rewrite Assistant, including header/nav, sidebar controls, and a flexible Kanban‐style board with cards. Let me know if you’d like adjustments—grouping behaviors, drag-and-drop cues, or expanded modal flows next!
+
+
+
+
+
+
+You said:
+WEBSITE WIREFRAME BRIEF
+
+Project Name: content rewrite assistant tool (ai)
+
+1. Site Overview & Objectives
+Overview:
+“We are building a website for  Kanban-style board interface that will rewrite content one after one, by using openai api 
+
+
+User Goals:
+-produtivity
+-user friendly
+ - Quickly input one version of text, rewrite 2nd version of text, use 2nd version of text to write v3 ... v-n-th 
+
+
+
+3. Sitemap & Navigation
+Primary Navigation Items (top‐level):
+ - home 
+ - setting
+
+
+Secondary Nav (Sidebar):
+ - undo
+ - or other
+
+4. Page-by-Page Requirements
+- only one page
+   -Header
+   -Main content: Cards
+      - Multiple vertical columns (lists), each with:
+                1st card
+                -only one text area for user input prompt
+                -“Start Working” input at bottom (turn to loading when waiting), after appear start again
+                - block of result appear below "button", not editable, a small button the top right conner of the block
+
+                2nd and n-th card
+                - a arrow connect from the (n-1)th card result block to the  text area for user input prompt
+                -only one text area for user input prompt
+                -“Start Working” like stated previous
+                -block of result like stated previous
+
+5. Functional & Interactive Elements
+Element	Interaction	Notes / States
+“Add a card” input	Click: expand into text-area + “Add card” CTA	Collapsed / Expanded / Error (empty)
+
+Modal window	Click card → open; click X or outside → close	Open / Closed
+
+7. Visual References & Inspiration
+Reference (URL or Screenshot)	What to Emulate	What to Avoid
+https://trello.com/	Clear list/card layout	Overly dense information
+https://dribbble.com/shots/XXXXX-Trello-Clone	Intuitive drag-and-drop cues	Too many colors or labels
+https://uxarchive.com/trello	Simple modal overlays	Interruptive pop-ups

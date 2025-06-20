@@ -1,0 +1,69 @@
+1. Retro-Futuristic Design Analysis
+
+A1 bold ’90s OS vibe—imagine Windows 95 meets neon pop art. 
+
+2. Wireframes & Layout (Nostalgic OS UI)
+
+Title Bar Header: Full-width gradient (#FF66CC→#FF33AA) bearing the app name in Chicago Bold, flanked by squared “Home” and “Settings” buttons rendered as classic window controls.
+
+Sidebar (Program Manager Panel): Fixed 240px wide, metallic gray background (#C0C0C0), featuring a large “Undo” glyph and an “Add Card” dropdown styled like an old-school system dialog.
+
+Main Canvas (Explorer Window): Fluid area with dotted desktop wallpaper background (#E0E0E0). Horizontal scroll enabled for additional “window frames.”
+
+Column Frames: Each step is a retro window with 3px black border, neon pink title bar (#FF66CC), and 8-bit close icon.
+
+Cards in Frame:
+
+Input Block: White textarea with single-pixel black outline, MS Sans Serif placeholder.
+
+Start Working Button: Raised 3D button in royal blue (#3366FF) with white pixel text and shadow on bottom-right.
+
+Result Pane: Indented panel (#F0F0F0) with a tiny 2×6-pixel kebab menu and pixel spinner overlay during processing.
+
+Connection Arrows: Solid black, 16×16 px sprites, linking each result pane to the next window’s input field.
+
+3. Mockups & Visual Detail
+
+Color Palette:
+
+Hot Pink Accent: #FF66CC
+
+Royal Blue Buttons: #3366FF
+
+Panel Grays: #C0C0C0 (sidebar), #E0E0E0 (canvas), #F0F0F0 (result)
+
+Text/System Black: #000000
+
+Typography:
+
+Title Bars & Headings: Chicago Bold, 14px
+
+Body & Inputs: MS Sans Serif, 12px
+
+Buttons & Controls:
+
+Raised Bevel Effect: 2px highlight top-left, 2px shadow bottom-right
+
+Text Fields: Blinking black caret, single-pixel border
+
+Iconography & States:
+
+Kebab Menu: Pixel-perfect 3-dot sprite
+
+Loading: 8-frame pixel spinner inside button border
+
+Spacing & Grid:
+
+Column Gutter: 20px aligned to pixel grid
+
+Card Padding: 8px inside each frame
+
+4. Design Requirements (Brand & Visual)
+
+Mood & Tone: Nostalgic, playful, and immersive—capture the charm of early desktop UIs while ensuring clarity.
+
+Consistency: Apply the Windows‑95 motif uniformly across all components.
+
+Accessibility: Ensure black-on-bright contrasts meet WCAG AA; use dotted-focus rectangles for keyboard navigation.
+
+Responsiveness: On mobile, stack “windows” vertically; use swipe gestures with pixel cursor hints for navigation.

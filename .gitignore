@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+
+# Node/npm (if ever used for tooling)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs/
+*.log
+
+# VSCode
+.vscode/
+
+# Environment files
+.env
+.env.*
+
+# Build output (not used in this project, but common for web projects)
+dist/
+build/
+
+# System files
+Thumbs.db

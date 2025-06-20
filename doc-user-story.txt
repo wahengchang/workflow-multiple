@@ -1,0 +1,62 @@
+1. User & Problem Analysis
+
+Primary User Profiles:
+
+Content Marketers & Copywriters: Need to iterate on headlines, summaries, and ad copy quickly.
+
+Technical Writers & Bloggers: Refine draft sections into more polished or varied versions.
+
+Students & Academics: Rewrite essays or abstracts for clarity and style variations.
+
+Core Problem:
+Users waste time manually rephrasing or restructuring text. They lose momentum switching between drafts and struggle to maintain context when generating multiple versions. They need a seamless, step‑by‑step workspace that keeps each iteration visible and connected.
+
+2. Mapping the User Flow
+
+Entry & Setup
+
+User lands on Home page, greets tool overview.
+
+Optionally visits Settings to configure API key, default rewrite tone, or hide unused steps.
+
+Creating a New Card
+
+Clicks Add card → expands input area.
+
+Enters initial text (draft version) and confirms.
+
+Initiating Rewrite
+
+In the newly created card, clicks Start Working.
+
+Button shows loading state; OpenAI API processes input.
+
+Viewing & Linking Results
+
+Upon completion, result block appears below button.
+
+Kebab menu on result allows actions (edit prompt, delete, copy text).
+
+An arrow automatically connects this result to next column’s input.
+
+Chaining Iterations
+
+In “Step 2” column, prompt area pre‑populates with previous result.
+
+User adjusts or accepts as new prompt; repeats Start Working.
+
+Review & Export
+
+After N iterations, user reviews each column side-by-side.
+
+Options to copy, download as document, or reset the board.
+
+Undo & Settings
+
+At any point, clicks Undo in sidebar to revert last API call.
+
+Settings modal accessible to adjust rewrite parameters or clear history.
+
+3. User Story
+
+As a busy content creator,I want to quickly generate successive rewrites of my draft text in a clear, linear workspace,so that I can refine ideas faster without losing track of previous versions and maintain a smooth, uninterrupted creative flow.
