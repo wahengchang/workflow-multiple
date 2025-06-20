@@ -24,13 +24,28 @@ export default {
     const addCard = () => {
       if (visibleCards.value < maxCards) visibleCards.value++;
     };
-    return { visibleCards, maxCards, addCard };
+    // Remove card and shift cards left
+    function removeCard(idx) {
+      // Remove localStorage entry
+      localStorage.removeItem(`card-storage-${idx}`);
+      // Shift all cards after idx left
+      for (let i = idx + 1; i < visibleCards.value; i++) {
+        const next = localStorage.getItem(`card-storage-${i}`);
+        if (next) {
+          localStorage.setItem(`card-storage-${i-1}`, next);
+          localStorage.removeItem(`card-storage-${i}`);
+        }
+      }
+      // Decrease visibleCards
+      if (visibleCards.value > 1) visibleCards.value--;
+    }
+    return { visibleCards, maxCards, addCard, removeCard };
   },
   template: `
     <main class="board-canvas">
       <div class="canvas-scroll" style="display: flex; align-items: flex-start;">
         <template v-for="i in visibleCards" :key="i">
-          <Card :index="i-1" :active="i === visibleCards" />
+          <Card :index="i-1" :active="i === visibleCards" @close="removeCard(i-1)" />
         </template>
         <button
           v-if="visibleCards < maxCards"

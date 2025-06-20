@@ -18,7 +18,6 @@ export default {
       <div class="header-gradient">
         <span class="header-title" aria-label="App Title">Content Rewrite Assistant</span>
         <nav class="header-controls" aria-label="Main Navigation">
-          <button class="header-btn" aria-label="Home">🏠 Home</button>
           <button class="header-btn" @click="openSettings" aria-label="Settings">⚙️ Settings</button>
         </nav>
       </div>

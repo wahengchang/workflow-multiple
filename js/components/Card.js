@@ -9,6 +9,8 @@ export default {
     active: { type: Boolean, default: false }
   },
   setup(props) {
+    const isEditing = ref(false);
+    const textareaRef = ref(null);
     const prompt = ref('');
     const loading = ref(false);
     const result = ref(null);
@@ -21,10 +23,18 @@ export default {
           const data = localStorage.getItem(`card-storage-${idx}`);
           if (data) {
             const parsed = JSON.parse(data);
-            return parsed.result || '';
+            if (parsed.result) {
+              console.log(`resolvePrompt: {{output${idx}}} resolved to:`, parsed.result);
+              return parsed.result;
+            } else {
+              console.warn(`resolvePrompt: {{output${idx}}} found, but no result.`);
+              return '[No output]';
+            }
           }
-        } catch {}
-        return '';
+        } catch (e) {
+          console.error(`resolvePrompt: error resolving {{output${idx}}}:`, e);
+        }
+        return '[No output]';
       });
     }
 
@@ -102,13 +112,42 @@ export default {
       }
     }
 
-    return { prompt, loading, result, error, handleStartWorking, configOpen, config };
+    // Auto-expand textarea
+    function autoResizeTextarea() {
+      const el = textareaRef.value;
+      if (el) {
+        el.style.height = 'auto';
+        el.style.height = el.scrollHeight + 'px';
+      }
+    }
+
+    // Watch prompt and resize
+    watch(prompt, () => {
+      autoResizeTextarea();
+    });
+    // Also resize on mount
+    onMounted(() => {
+      autoResizeTextarea();
+    });
+
+    return { prompt, loading, result, error, handleStartWorking, configOpen, config, isEditing, textareaRef };
   },
   template: `
-    <div :class="['card', { 'card-active': active }]">
-      <div class="card-header">
-        <span class="card-step-icon">📝</span>
-        <span class="card-step-label">Step {{ Number(index) + 1 }}</span>
+    <div :class="['card', { 'card-active': active, 'card-editing': isEditing }]"
+         :style="{
+           background: '#fff',
+           border: '1.5px solid #d3d3d3',
+           borderRadius: '12px',
+           boxShadow: isEditing ? '0 0 0 3px #6cf' : '0 2px 8px #0001',
+           transition: 'box-shadow 0.2s, border-color 0.2s'
+         }">
+
+      <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center;">
+          <span class="card-step-icon">📝</span>
+          <span class="card-step-label">Step {{ Number(index) + 1 }}</span>
+        </div>
+        <button class="card-close-btn" @click="$emit('close')" style="background: none; border: none; font-size: 1.2em; cursor: pointer;">✕</button>
       </div>
       <div class="card-content">
         <!-- Collapsible Config Section -->
@@ -151,7 +190,11 @@ export default {
           </div>
         </div>
         <!-- End Config Section -->
-        <textarea v-model="prompt" placeholder="Enter your text here..." rows="4" class="card-input"></textarea>
+        <textarea v-model="prompt" placeholder="Enter your text here..." rows="4" class="card-input"
+          ref="textareaRef"
+          @focus="isEditing = true" @blur="isEditing = false"
+          @input="autoResizeTextarea"
+        ></textarea>
         <button @click="handleStartWorking" :disabled="loading" class="card-btn">
           <span v-if="loading">Working...</span>
           <span v-else>Start Working</span>
