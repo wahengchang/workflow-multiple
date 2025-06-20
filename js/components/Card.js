@@ -11,7 +11,23 @@ export default {
   setup(props) {
     const isEditing = ref(false);
     const textareaRef = ref(null);
-    const prompt = ref('');
+    // Set default prompt based on index (if no saved value)
+  let defaultPrompt = '';
+  if (props.index === 0) {
+    defaultPrompt = 'say hi in japanese';
+  } else if (props.index === 1) {
+    defaultPrompt = 'what does it say? {{output0}}';
+  }
+  // If localStorage has a saved prompt, use it; otherwise, use defaultPrompt
+  let saved = null;
+  try {
+    const data = localStorage.getItem(`card-storage-${props.index}`);
+    if (data) {
+      const parsed = JSON.parse(data);
+      if (parsed.prompt) saved = parsed.prompt;
+    }
+  } catch {}
+  const prompt = ref(saved ?? defaultPrompt);
     const loading = ref(false);
     const result = ref(null);
     const error = ref(null);
@@ -130,7 +146,15 @@ export default {
       autoResizeTextarea();
     });
 
-    return { prompt, loading, result, error, handleStartWorking, configOpen, config, isEditing, textareaRef };
+    function onTextareaKeydown(e) {
+      // Cmd+Enter (Mac) or Ctrl+Enter (Win/Linux)
+      if ((e.metaKey || e.ctrlKey) && e.key === 'Enter' && !loading.value) {
+        e.preventDefault();
+        handleStartWorking();
+      }
+    }
+
+    return { prompt, loading, result, error, handleStartWorking, configOpen, config, isEditing, textareaRef, onTextareaKeydown };
   },
   template: `
     <div :class="['card', { 'card-active': active, 'card-editing': isEditing }]"
@@ -194,6 +218,7 @@ export default {
           ref="textareaRef"
           @focus="isEditing = true" @blur="isEditing = false"
           @input="autoResizeTextarea"
+          @keydown="onTextareaKeydown"
         ></textarea>
         <button @click="handleStartWorking" :disabled="loading" class="card-btn">
           <span v-if="loading">Working...</span>
